@@ -12,7 +12,7 @@ let
     "-B${avrlibc}/avr/lib/avr51"
     "-L${avrlibc}/avr/lib/avr51"
   ];
-  avrgcc = pkgs.avrgcc.overrideAttrs (_: {
+  avrgcc = pkgs.avrgcc.overrideAttrs (oldAttrs: rec {
     name = "avr-gcc-8.1.0";
     src = fetchurl {
       url = "mirror://gcc/releases/gcc-8.1.0/gcc-8.1.0.tar.xz";
