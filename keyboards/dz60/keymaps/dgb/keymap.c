@@ -45,6 +45,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   //rgbmode += 1;
   //rgbmode %= 255;
   //rgblight_mode(rgbmode);
+  return 1;
+}
 
-  return true;
+uint32_t layer_state_set_user(uint32_t state) {
+     switch (biton32(state)) {
+     case BASE:
+	  rgblight_setrgb(0x00, 0xFF, 0x00);
+	  break;
+
+     case _FN1:
+	  rgblight_setrgb(0x00, 0x00, 0xFF);
+	  break;
+
+     case _FN2:
+	  rgblight_setrgb(0xFF, 0xFF, 0x00);
+	  break;
+
+     case GAME:
+	  rgblight_setrgb(0xFF, 0x00, 0x00);
+	  break;
+
+     default:
+	  rgblight_setrgb (0xFF,  0xFF, 0xFF);
+	  break;
+     }
+  return state;
 }
