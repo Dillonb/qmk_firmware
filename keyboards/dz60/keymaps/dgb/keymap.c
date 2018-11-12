@@ -55,7 +55,7 @@ uint32_t layer_state_set_user(uint32_t state) {
                break;
 
           case _FN1:
-               rgblight_setrgb(0x00, 0x00, 0xFF);
+               rgblight_setrgb(0x00, 0x80, 0x00);
                break;
 
           case _FN2:

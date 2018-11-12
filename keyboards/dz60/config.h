@@ -48,4 +48,10 @@
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
 
+
+// Customized
+
+// Turn RGB off when computer goes to sleep
+#define RGBLIGHT_SLEEP
+
 #endif
