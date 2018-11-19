@@ -1,4 +1,6 @@
 #include QMK_KEYBOARD_H
+#include <stdint.h>
+
 
 #define BASE 0
 #define _FN1 1
@@ -6,8 +8,8 @@
 #define GAME 3
 
 #define _FN1SPC LT(_FN1, KC_SPC)
-
 #define _______ KC_TRNS
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      [BASE] = LAYOUT_DGB(
@@ -48,26 +50,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
      return 1;
 }
 
+void dgb_setrgb_respecting_val(uint8_t r, uint8_t g, uint8_t b) {
+    uint8_t val = rgblight_get_val();
+    double scaling_factor = val / 255.0;
+
+    uint8_t adj_r = scaling_factor * r;
+    uint8_t adj_g = scaling_factor * g;
+    uint8_t adj_b = scaling_factor * b;
+
+    rgblight_setrgb(adj_r, adj_g, adj_b);
+}
+
 uint32_t layer_state_set_user(uint32_t state) {
      switch (biton32(state)) {
           case BASE:
-               rgblight_setrgb(0x00, 0xFF, 0x00);
+               dgb_setrgb_respecting_val(0x00, 0xFF, 0x00);
                break;
 
           case _FN1:
-               rgblight_setrgb(0x00, 0x80, 0x00);
+               dgb_setrgb_respecting_val(0x00, 0x80, 0x00);
                break;
 
           case _FN2:
-               rgblight_setrgb(0xFF, 0xFF, 0x00);
+               dgb_setrgb_respecting_val(0xFF, 0xFF, 0x00);
                break;
 
           case GAME:
-               rgblight_setrgb(0xFF, 0x00, 0x00);
+               dgb_setrgb_respecting_val(0xFF, 0x00, 0x00);
                break;
 
           default:
-               rgblight_setrgb (0xFF,  0xFF, 0xFF);
+               dgb_setrgb_respecting_val(0xFF,  0xFF, 0xFF);
                break;
      }
      return state;
