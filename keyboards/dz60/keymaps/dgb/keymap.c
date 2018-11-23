@@ -43,13 +43,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 int rgbmode = 0;
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-     //rgbmode += 1;
-     //rgbmode %= 255;
-     //rgblight_mode(rgbmode);
-     return 1;
-}
-
 void dgb_setrgb_respecting_val(uint8_t r, uint8_t g, uint8_t b) {
     uint8_t val = rgblight_get_val();
     double scaling_factor = val / 255.0;
