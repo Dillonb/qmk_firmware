@@ -75,17 +75,17 @@ uint32_t layer_state_set_user(uint32_t state) {
     switch (biton32(state)) {
         case BASE:
             rgblight_mode(RGB_STATIC);
-            dgb_setrgb_respecting_val(0x00, 0xFF, 0x00);
+            dgb_setrgb_respecting_val(0x4B, 0x00, 0x82);
             break;
 
         case _FN1:
             rgblight_mode(RGB_FASTBREATHE);
-            dgb_setrgb_respecting_val(0x00, 0x80, 0x00);
+            dgb_setrgb_respecting_val(0x4B, 0x00, 0x82);
             break;
 
         case _FN2:
-            rgblight_mode(RGB_FASTSNAKE);
-            dgb_setrgb_respecting_val(0xFF, 0xFF, 0x00);
+            rgblight_mode(RGB_FASTBREATHE);
+            dgb_setrgb_respecting_val(0x4B, 0x00, 0x82);
             break;
 
         case GAME:
